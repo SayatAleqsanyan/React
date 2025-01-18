@@ -50,14 +50,14 @@ const Login = () => {
             <form onSubmit={handleSubmit(login)} className='w-full h-[80vh] flex  justify-center items-center' >
                 <div className='gap-3 flex flex-col justify-center items-center  p-8 bg-blue-300 shadow-lg shadow-indigo-500/50 ... rounded-lg' >
                     <h1 className='text-xl font-bold'>Login</h1>
-                   <Input
+                    <Input
                         name="email"
                         register={register}
                         type="text"
                         placeholder="Email"
                         validation={emailValidation}
                         error={errors.email && errors.email.message}
-                   />
+                    />
                     <Input
                         name="password"
                         register={register}

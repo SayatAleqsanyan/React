@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 const User = () => {
 
-   const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
     const token = localStorage.getItem('token')
     const logout = () => {
         localStorage.removeItem('token')

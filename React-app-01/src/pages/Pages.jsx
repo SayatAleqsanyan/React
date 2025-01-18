@@ -8,7 +8,7 @@ const Pages = () => {
 
 
     return (
-        <div className='min-h-[80vh]'>
+        <div className='min-h-[80vh] bg-neutral-400'>
             {useRoutes(token ? privateRoutes : publicRoutes)}
         </div>
     );

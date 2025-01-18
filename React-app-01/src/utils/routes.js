@@ -7,7 +7,7 @@ import About from "../pages/About";
 import { Navigate } from "react-router";
 
 export const LOGIN_PAGE = "/login"
-export const REGISTER_PAGE = "/register"
+export const REGISTER_PAGE = "/register" 
 export const HOME_PAGE = "/"
 export const ABOUT_PAGE = "/about"
 
@@ -18,7 +18,7 @@ export const publicRoutes = [
 ]
 
 export const privateRoutes = [
-   {path: HOME_PAGE, element: <Home/>, name: 'Home'},
-   {path: ABOUT_PAGE, element: <About/>, name: 'About'},
-   {path: "*", element: <Navigate to={HOME_PAGE}/>}
+    {path: HOME_PAGE, element: <Home/>, name: 'Home'},
+    {path: ABOUT_PAGE, element: <About/>, name: 'About'},
+    {path: "*", element: <Navigate to={HOME_PAGE}/>}
 ]

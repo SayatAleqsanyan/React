@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Pages from './pages/Pages';
 
 
-function App() {
+function App() { 
   return (
     <div className="App">
       <Header />

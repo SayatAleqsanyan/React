@@ -4,19 +4,16 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import {Navigate} from "react-router-dom";
 import Products from "../pages/Products";
-import RegisterP from "../pages/RegisterP";
 
 export const HOME_PAGE = "/"
 export const ABOUT_PAGE = "/about"
 export const PRODUCTS_PAGE = "/products"
 export const LOGIN_PAGE = "/login"
 export const REGISTER_PAGE = "/register"
-export const REGISTERP_PAGE = "/registerp"
 
 export const publicRoutes = [
     {path: LOGIN_PAGE, element: <Login/>, name: 'Login', menu: true},
     {path: REGISTER_PAGE, element: <Register/>, name: 'Register', menu: true},
-    {path: REGISTERP_PAGE, element: <RegisterP/>, name: 'Register', menu: true},
     {path: "*", element: <Navigate to={LOGIN_PAGE}/>}
 ]
 
