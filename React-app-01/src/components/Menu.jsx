@@ -21,7 +21,7 @@ const ExampleMenu = ({menu}) => {
 
 const Menu = () => {
 
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('authToken')
 
     return (
         <nav>

@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { publicRoutes, privateRoutes } from '../utils/routes';
 import { useRoutes } from 'react-router';
 
 const Pages = () => {
 
-    const [token, setToken] = useState(null);
+    const token = localStorage.getItem('authToken')
 
-    useEffect(() => {
-        const fetchedToken = localStorage.getItem("authToken");
-        setToken(fetchedToken);
-    }, []);
 
     return (
         <div className='min-h-[80vh] bg-neutral-400'>

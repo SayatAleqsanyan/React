@@ -51,8 +51,8 @@ const Login = () => {
             return;
         }
 
-        handleLogin();
-        
+        localStorage.setItem('authToken', userLogin); 
+        window.location.reload();
 
         alert('Login successful!');
         setUserLogin("");  
