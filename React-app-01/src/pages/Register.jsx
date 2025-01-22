@@ -1,58 +1,69 @@
 import React, { useState } from "react";
 import { LOGIN_PAGE } from "../utils/routes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { notify } from "../utils/notify";
 
 const Register = () => {
-
-    const usernameRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{1,}$/;
-    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/; 
+    const navigate = useNavigate();
+    const usernameRegex = /^[A-Za-z0-9]{5,15}$/;
+    const passwordRegex = /^[A-Za-z0-9]{8,15}$/;
 
     const [userLogin, setUserLogin] = useState("");
     const [userPassword, setUserPassword] = useState("");
     const [userConfirmPassword, setUserConfirmPassword] = useState("");
-    const [userLoginDirty, setUserLoginDirty] = useState(false);
-    const [userPasswordDirty, setUserPasswordDirty] = useState(false);
-    const [userConfirmPasswordDirty, setUserConfirmPasswordDirty] = useState(false);
+    const [userLoginDirty] = useState(false);
+    const [userPasswordDirty] = useState(false);
+    const [userConfirmPasswordDirty] = useState(false);
     const [userLoginError, setUserLoginError] = useState("Enter your login");
-    const [userPasswordError, setUserPasswordError] = useState("Enter a password");
-    const [userConfirmPasswordError, setUserConfirmPasswordError] = useState("Confirm password");
+    const [userPasswordError, setUserPasswordError] =
+        useState("Enter a password");
+    const [userConfirmPasswordError, setUserConfirmPasswordError] =
+        useState("Confirm password");
 
-    const validateField = (name, value) => {
-        switch (name) {
-            case "userLogin":
-                if (!value) {
-                    setUserLoginError("Login cannot be empty");
-                } else if (!usernameRegex.test(value)) {
-                    setUserLoginError("Login must contain at least one letter and one number");
-                } else {
-                    setUserLoginError("");
-                }
-                break;
-            case "userPassword":
-                if (!value) {
-                    setUserPasswordError("Password cannot be empty");
-                } else if (!passwordRegex.test(value)) {
-                    setUserPasswordError("Password must be between 8 to 16 characters, and contain at least one number and one special character");
-                } else {
-                    setUserPasswordError("");
-                }
-                break;
-            case "userConfirmPassword":
-                if (value !== userPassword) {
-                    setUserConfirmPasswordError("Passwords don't match");
-                } else {
-                    setUserConfirmPasswordError("");
-                }
-                break;
-            default:
-                break;
-        }
-    };
+    const validateField = (e) => {
+        if (e && e.target) {
+            const { name, value } = e.target;  
 
-    const blurHandler = (e) => {
-        const { name, value } = e.target;
-        validateField(name, value);
-    };
+            switch (name) {
+                case "userLogin":
+                    if (!value) {
+                        setUserLoginError("Login cannot be empty");
+                        } else if (!usernameRegex.test(value)) {
+                            setUserLoginError(
+                                "Login must contain at least one letter and one number"
+                            );
+                        } else {
+                            setUserLoginError("");
+                        }
+                        break;
+                    case "userPassword":
+                        if (!value) {
+                            setUserPasswordError("Password cannot be empty");
+                        } else if (!passwordRegex.test(value)) {
+                            setUserPasswordError(
+                                "Password must be between 8 to 16 characters, and contain at least one number and one special character"
+                            );
+                        } else {
+                            setUserPasswordError("");
+                        }
+                        break;
+                    case "userConfirmPassword":
+                        if (value !== userPassword) {
+                            setUserConfirmPasswordError("Passwords don't match");
+                        } else {
+                            setUserConfirmPasswordError("");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+        
+        const blurHandler = (e) => {
+            validateField(e);
+        };
+        
 
     const registration = (event) => {
         event.preventDefault();
@@ -60,34 +71,44 @@ const Register = () => {
         const userName = userLogin;
         const password = userPassword;
 
-        const users = JSON.parse(localStorage.getItem('users')) || {};
+        const users = JSON.parse(localStorage.getItem("users")) || [];
 
         if (users[userName]) {
-            alert('A user with the same name already exists.');
+            notify("A user with the same name already exists.");
             return;
         }
 
         if (password !== userConfirmPassword) {
-            alert('Passwords don\'t match.');
+            notify("Passwords don't match.");
             return;
         }
 
-        users[userName] = password;
-        localStorage.setItem('users', JSON.stringify(users));
-        alert('Registration successful!');
-        
-        setUserLogin('');
-        setUserPassword('');
-        setUserConfirmPassword('');
+        users.push({
+            id: users.length + 1,
+            name: userLogin,
+            password: userPassword
+        })
+
+        localStorage.setItem("users", JSON.stringify(users));
+        notify("Registration successful!", "green");
+        navigate(LOGIN_PAGE);
+        setUserLogin("");
+        setUserPassword("");
+        setUserConfirmPassword("");
     };
 
-    const isFormValid = userLogin && userPassword && userConfirmPassword && !userLoginError && !userPasswordError;
+    const isFormValid =
+        userLogin &&
+        userPassword &&
+        userConfirmPassword &&
+        !userLoginError &&
+        !userPasswordError;
 
     return (
         <div className="h-[80vh] flex items-center justify-center select-none">
             <form
                 action=""
-                className="flex flex-col items-center justify-start h-[60vh] bg-sky-900/50 w-[40%] min-w-[400px] gap-5 p-5 rounded-xl"
+                className="min-h-[500px] flex flex-col items-center justify-start h-[60vh] bg-sky-900/50 w-[40%] min-w-[400px] gap-5 p-5 rounded-xl"
             >
                 <h1 className="text-5xl p-[30px] text-slate-50 font-bold">
                     REGISTER
@@ -103,6 +124,7 @@ const Register = () => {
                         type="text"
                         name="userLogin"
                         placeholder="Login"
+                        autoComplete="Login"
                         value={userLogin}
                         onBlur={blurHandler}
                         onChange={(e) => setUserLogin(e.target.value)}
@@ -120,6 +142,7 @@ const Register = () => {
                         type="password"
                         name="userPassword"
                         placeholder="Password"
+                        autoComplete="Password"
                         value={userPassword}
                         onBlur={blurHandler}
                         onChange={(e) => setUserPassword(e.target.value)}
@@ -137,6 +160,7 @@ const Register = () => {
                         type="password"
                         name="userConfirmPassword"
                         placeholder="Confirm Password"
+                        autoComplete="current-password"
                         value={userConfirmPassword}
                         onBlur={blurHandler}
                         onChange={(e) => setUserConfirmPassword(e.target.value)}

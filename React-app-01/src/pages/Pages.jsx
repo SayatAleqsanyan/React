@@ -4,7 +4,7 @@ import { useRoutes } from 'react-router';
 
 const Pages = () => {
 
-    const token = localStorage.getItem('authToken')
+    const token = localStorage.getItem('Token')
 
 
     return (
