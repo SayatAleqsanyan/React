@@ -1,12 +1,17 @@
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
-export const notify = (text, color) => toast(text, {
-    position: 'top-right',
-    autoClose: 900,
-    style:{
+export const notify = (text, color) =>
+    toast( ` 🔔  ${text} `, {
+        position: "top-center",
+        autoClose: 2000,
+        autoBackgroundColor: "#777",
 
-        background: color,
-        color: "white"
-    }
-});
+        style: {
+            background: color,
+            color: "#fff",
+            fontWeight: "bold",
+            fontSize: "18px",
+        },
+    });
 
+    

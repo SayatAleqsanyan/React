@@ -1,47 +1,47 @@
-import React from 'react';
-import {publicRoutes, privateRoutes} from "../utils/routes";
-import {Link, useLocation} from "react-router-dom";
+import React from "react";
+import { publicRoutes, privateRoutes } from "../utils/routes";
+import { NavLink, useLocation } from "react-router-dom";
 
-const ExampleMenu = ({menu}) => {
+const ExampleMenu = ({ menu }) => {
+    const { pathname } = useLocation();
 
-    const {pathname} = useLocation()
-
-    return <ul className="flex gap-2">
-        {
-            menu.map(page => {
-                return  page.menu && <li key={page.path}>
-                    <Link
-                        to={page.path}
-                        className={`text-xl font-bold 
-                        ${pathname === page.path ? 'text-[#B91F47]' :
-                            'text-black'} 
-                        ${pathname !== page.path && 'hover:text-[#00367E]'}  `
-                        }>
-                        {page.name}
-
-
-                    </Link>
-
-                </li>
-            })
-        }
-    </ul>
-}
-
+    return (
+        <ul className="flex gap-2">
+            {menu.map((page) => {
+                return (
+                    page.menu && (
+                        <li key={page.path}>
+                            <NavLink
+                                to={page.path}
+                                className={`font-bold text-2xl  text-white
+                        ${
+                            pathname === page.path
+                                ? "text-[#B91F47]"
+                                : "text-black"
+                        } 
+                        ${pathname !== page.path && "hover:text-[#00367E]"}`}
+                            >
+                                {page.name}
+                            </NavLink>
+                        </li>
+                    )
+                );
+            })}
+        </ul>
+    );
+};
 
 const Menu = () => {
-
-
-    const token = localStorage.getItem('Token')
+    const token = localStorage.getItem("Token");
 
     return (
         <div>
-            {
-                token ? <ExampleMenu menu={privateRoutes}/> : <ExampleMenu menu={publicRoutes}/>
-            }
-
+            {token ? (
+                <ExampleMenu menu={privateRoutes} />
+            ) : (
+                <ExampleMenu menu={publicRoutes} />
+            )}
         </div>
-
     );
 };
 

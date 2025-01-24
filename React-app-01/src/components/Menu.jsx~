@@ -1,6 +1,6 @@
 import React from 'react';
 import {publicRoutes, privateRoutes} from "../utils/routes";
-import {Link, useLocation} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 const ExampleMenu = ({menu}) => {
 
@@ -10,7 +10,7 @@ const ExampleMenu = ({menu}) => {
         {
             menu.map(page => {
                 return  page.menu && <li key={page.path}>
-                    <Link
+                    <NavLink
                         to={page.path}
                         className={`text-xl font-bold 
                         ${pathname === page.path ? 'text-[#B91F47]' :
@@ -20,7 +20,7 @@ const ExampleMenu = ({menu}) => {
                         {page.name}
 
 
-                    </Link>
+                    </NavLink>
 
                 </li>
             })

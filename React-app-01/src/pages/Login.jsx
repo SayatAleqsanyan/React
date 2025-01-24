@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { REGISTER_PAGE } from "../utils/routes";
-
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { notify } from "../utils/notify";
+import axios from "axios";
 
 const Login = () => {
     const [userLogin, setUserLogin] = useState("");
@@ -10,20 +11,27 @@ const Login = () => {
     const [userLoginDirty] = useState(false);
     const [userPasswordDirty] = useState(false);
     const [userLoginError, setUserLoginError] = useState("Enter login");
-    const [userPasswordError, setUserPasswordError] =
-        useState("Enter password");
+    const [userPasswordError, setUserPasswordError] = useState("Enter password");
+    const [rememberMe, setRememberMe] = useState(false);
+    const [eye, setEye] = useState(false);
+    const [passwordType, setPasswordType] = useState("password");
 
-    const validateField = (name, value) => {
-        switch (name) {
+    const showPassword = () => {
+        setEye(!eye);
+        setPasswordType(passwordType === "password" ? "text" : "password");
+    };
+
+    const blurHandler = (e) => {
+        switch (e.target.name) {
             case "userLogin":
-                if (!value) {
+                if (!e.target.value) {
                     setUserLoginError("Login cannot be empty");
                 } else {
                     setUserLoginError("");
                 }
                 break;
             case "userPassword":
-                if (!value) {
+                if (!e.target.value) {
                     setUserPasswordError("Password cannot be empty");
                 } else {
                     setUserPasswordError("");
@@ -34,19 +42,33 @@ const Login = () => {
         }
     };
 
-    const blurHandler = (e) => {
-        validateField(e.target.name, e.target.value);
+    useEffect(() => {
+        const savedUser = JSON.parse(localStorage.getItem("rememberMe"));
+        if (savedUser) {
+            setUserLogin(savedUser.name);
+            setUserPassword(savedUser.password);
+        }
+    }, []);
+    
+    const getUsers = async () => {
+        try {
+            const response = await axios.get("http://localhost:4000/users");
+            return response.data;
+        } catch (error) {
+            console.log(error.message);
+            return [];
+        }
     };
 
-    const logining = (event) => {
+    const logining = async (event) => {
         event.preventDefault();
-
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-
-        const user = users.find(user => user.name === userLogin);
+        
+        const users = await getUsers();
+        
+        const user = users.find((user) => user.userName === userLogin);
 
         if (!user) {
-            notify("User does not exist!");
+            notify("User does not exist!", "red");
             return;
         }
 
@@ -55,21 +77,22 @@ const Login = () => {
             return;
         }
 
+        if (rememberMe) {
+            localStorage.setItem('rememberMe', JSON.stringify(user));
+        }
+
         localStorage.setItem("Token", userLogin);
         window.location.reload();
 
-        notify("Succes", "green");
         setUserLogin("");
         setUserPassword("");
     };
 
-    const isFormValid =
-        userLogin && userPassword && !userLoginError && !userPasswordError;
+    const isFormValid = userLogin && userPassword;
 
     return (
         <div className="min-h-[500px] p-[50px] h-[80vh] flex items-center justify-center select-none">
             <form
-                action=""
                 onSubmit={logining}
                 className="min-h-[500px] flex flex-col items-center justify-start h-[60vh] bg-sky-900/50 w-[40%] min-w-[400px] gap-5 p-5 rounded-xl"
             >
@@ -101,41 +124,54 @@ const Login = () => {
                             {userPasswordError}
                         </div>
                     )}
-                    <input
-                        type="password"
-                        name="userPassword"
-                        placeholder="Password"
-                        autoComplete="password"
-                        value={userPassword}
-                        onBlur={blurHandler}
-                        onChange={(e) => setUserPassword(e.target.value)}
-                        className="border border-black rounded-xl w-64 py-1 px-3"
-                    />
+                    <div className="p-2 flex relative">
+                        <input
+                            type={passwordType}
+                            name="userPassword"
+                            placeholder="Password"
+                            autoComplete="password"
+                            value={userPassword}
+                            onBlur={blurHandler}
+                            onChange={(e) => setUserPassword(e.target.value)}
+                            className="border border-black rounded-xl w-64 py-1 px-3"
+                        />
+                        <span
+                            onClick={showPassword}
+                            className="cursor-pointer absolute flex justify-around items-center top-3 right-4"
+                        >
+                            {eye ? <FaEyeSlash size={25} /> : <FaEye size={25} />}
+                        </span>
+                    </div>
                 </span>
 
                 <br />
 
                 <button
-                    // onClick={logining}
                     type="submit"
                     disabled={!isFormValid}
                     className={`border border-black rounded-xl w-64 ${
-                        isFormValid
-                            ? "bg-green-300 hover:bg-sky-200"
-                            : "bg-red-200"
+                        isFormValid ? "bg-green-300 hover:bg-sky-200" : "bg-red-200"
                     }`}
                 >
                     Login
                 </button>
 
+                <label>
+                    Remember me
+                    <input
+                        type="checkbox"
+                        onChange={(e) => setRememberMe(e.target.checked)}
+                    />
+                </label>
+
                 <p>
                     Don't have an account?{" "}
-                    <Link
+                    <NavLink
                         to={REGISTER_PAGE}
                         className="underline text-blue-800"
                     >
                         Register
-                    </Link>
+                    </NavLink>
                 </p>
             </form>
         </div>
