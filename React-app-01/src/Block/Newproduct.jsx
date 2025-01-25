@@ -1,6 +1,7 @@
 import { FiFilePlus } from "react-icons/fi";
 import React, { useState } from "react";
 import axios from "axios";
+import { notify } from "../utils/notify";
 
 const getProducts = async () => {
     try {
@@ -15,7 +16,7 @@ const getProducts = async () => {
 const postProduct = async (productName, price, description, image) => {
     const products = await getProducts();
     const id = products.length + 1;
-    const newName = productName + id;
+    const newName = productName;
 
     try {
         await axios.post("http://localhost:4000/products", {
@@ -29,7 +30,7 @@ const postProduct = async (productName, price, description, image) => {
     }
 };
 
-const NewProduct = () => {
+const NewProduct = ({ refreshProducts }) => {
     const [productName, setProductName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
@@ -42,13 +43,15 @@ const NewProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        if (!productName || !price || !description || !image) {
+        if (!productName || !price || !description ) {
             setErrorMessage("All fields are required.");
+            notify(errorMessage, "red");
             return;
         }
 
         if (price <= 0) {
             setErrorMessage("Price must be a positive number.");
+            notify(errorMessage, "red");
             return;
         }
 
@@ -60,9 +63,13 @@ const NewProduct = () => {
             setPrice("");
             setDescription("");
             setImage("");
+            refreshProducts(); 
+            notify(successMessage, "green");
         } catch (error) {
+
             setErrorMessage(error.message || "Something went wrong, please try again.");
             setSuccessMessage("");
+            notify(errorMessage, "red");
         }
     };
 
@@ -128,13 +135,6 @@ const NewProduct = () => {
 
                     <button type="submit" className="bg-blue-500 text-white p-2 rounded">Add Product</button>
                 </form>
-            )}
-
-            {successMessage && (
-                <div className="text-green-500 mt-4">{successMessage}</div>
-            )}
-            {errorMessage && (
-                <div className="text-red-500 mt-4">{errorMessage}</div>
             )}
         </div>
     );

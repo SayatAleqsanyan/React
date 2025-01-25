@@ -1,36 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 
-const getProducts = async () => {
-    try {
-        const response = await axios.get("http://localhost:4000/products");
-        return response.data;
-    } catch (error) {
-        console.log(error.message);
-        return [];
-    }
-};
-
-const Product = () => {
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const filteredCard = await getProducts();
-            setProducts(filteredCard);
-        };
-        fetchProducts();
-    }, []);
-
+const Product = ({ products, deleteProduct, refreshProducts }) => {
     return (
         <div className="flex flex-wrap justify-start">
             {products.map((item) => (
                 <div className="card" key={item.id}>
-                    <div className="max-w-sm rounded overflow-hidden shadow-lg m-5 p-5 bg-gray-100 text-gray-800">
+                    <div className="max-w-sm rounded overflow-hidden shadow-lg m-5 p-5 bg-gray-100 text-gray-800 w-[225px] h-[400px]">
                         <img
-                            className="w-full"
-                            src={item.image}
+                            className="w-[220px] h-[220px] object-cover"
+                            src={item.image || "https://picsum.photos/200"}
                             alt="Product Images"
                         />
                         <div className="px-6 py-4">
@@ -39,20 +18,21 @@ const Product = () => {
                                     Product: {item.name}
                                 </NavLink>
                             </div>
-                            <div>
-                                {item.price}{" $"}
-                            </div>
-                            <p className="text-gray-700 text-base">
-                                {item.description}
-                            </p>
+                            <div>{item.price}{" $"}</div>
+                            <p className="text-gray-700 text-base">{item.description}</p>
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <NavLink className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                                 Add
                             </NavLink>
-                            { "Admin" === localStorage.getItem("Token") && <button className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                                delete
-                            </button>}
+                            {"Admin" === localStorage.getItem("Token") && (
+                                <button
+                                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                                    onClick={() => deleteProduct(item.id, refreshProducts)} // Trigger delete on click
+                                >
+                                    Delete
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

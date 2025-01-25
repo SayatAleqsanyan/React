@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Color Based on Background Color</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 20px;
+        }
+
+        .content {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content" id="text">
+    Սա այն տեքստն է, որը կփոխի իր գույնը ֆոնի գույնից կախված։
+</div>
+
+<button onclick="changeBackgroundColor()">Փոխել ֆոնի գույնը</button>
+
+<script>
+    function getLuminance(color) {
+        // Հաշվարկում ենք լուսավորությունը RGB հիման վրա
+        const rgb = color.match(/\d+/g);
+        const [r, g, b] = rgb.map(Number);
+
+        // RGB-ից luminance հաշվարկ
+        const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        return luminance / 255;
+    }
+
+    function changeBackgroundColor() {
+        // Ֆոնի գույնի պատահական ընտրություն
+        const colors = ['#ff6347', '#4682b4', '#32cd32', '#ff1493', '#1e90ff'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.body.style.backgroundColor = randomColor;
+
+        // Պարզել ֆոնի գույնի լուսավորությունը
+        const luminance = getLuminance(randomColor);
+
+        // Եթե լուսավորությունը ցածր է, ընտրենք սպիտակ տեքստ
+        if (luminance < 0.5) {
+            document.body.style.color = '#FFFFFF'; // Սպիտակ
+        } else {
+            document.body.style.color = '#000000'; // Մուգ
+        }
+    }
+
+    // Նախնական գույնի հաշվարկ
+    changeBackgroundColor();
+</script>
+
+</body>
+</html>
