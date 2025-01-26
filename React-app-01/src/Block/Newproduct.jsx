@@ -2,6 +2,14 @@ import { FiFilePlus } from "react-icons/fi";
 import React, { useState } from "react";
 import axios from "axios";
 import { notify } from "../utils/notify";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
+import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
+
 
 const getProducts = async () => {
     try {
@@ -13,6 +21,8 @@ const getProducts = async () => {
     }
 };
 
+const productsInfo = await getProducts();
+
 const postProduct = async (productName, price, description, image) => {
     const products = await getProducts();
     const id = products.length + 1;
@@ -21,6 +31,7 @@ const postProduct = async (productName, price, description, image) => {
     try {
         await axios.post("http://localhost:4000/products", {
             name: newName,
+            id,
             price,
             description,
             image,
@@ -42,8 +53,8 @@ const NewProduct = ({ refreshProducts }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        if (!productName || !price || !description ) {
+
+        if (!productName || !price || !description) {
             setErrorMessage("All fields are required.");
             notify(errorMessage, "red");
             return;
@@ -63,11 +74,12 @@ const NewProduct = ({ refreshProducts }) => {
             setPrice("");
             setDescription("");
             setImage("");
-            refreshProducts(); 
+            refreshProducts();
             notify(successMessage, "green");
         } catch (error) {
-
-            setErrorMessage(error.message || "Something went wrong, please try again.");
+            setErrorMessage(
+                error.message || "Something went wrong, please try again."
+            );
             setSuccessMessage("");
             notify(errorMessage, "red");
         }
@@ -78,7 +90,10 @@ const NewProduct = ({ refreshProducts }) => {
     return (
         <div>
             <span className="m-10">
-                <button onClick={() => setFormVisible(!formVisible)} className="text-9xl hover:text-[#141c4b]">
+                <button
+                    onClick={() => setFormVisible(!formVisible)}
+                    className="text-9xl hover:text-[#141c4b]"
+                >
                     <FiFilePlus className="text-9xl cursor-pointer" />
                 </button>
             </span>
@@ -133,9 +148,33 @@ const NewProduct = ({ refreshProducts }) => {
                         </label>
                     </div>
 
-                    <button type="submit" className="bg-blue-500 text-white p-2 rounded">Add Product</button>
+                    <button
+                        type="submit"
+                        className="bg-blue-500 text-white p-2 rounded"
+                    >
+                        Add Product
+                    </button>
                 </form>
             )}
+
+            <div>
+                <Swiper
+                    spaceBetween={10}
+                    effect={"fade"}
+                    navigation={true}
+                    autoplay={true}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[EffectFade, Navigation, Pagination, Autoplay]}
+                    className="mySwiper select-none"
+                >
+                    {productsInfo.map(item =>(
+                        <SwiperSlide key={item.id}><img src={item.image} alt=""/>
+                    </SwiperSlide>))}
+
+                </Swiper>
+            </div>
         </div>
     );
 };

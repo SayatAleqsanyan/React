@@ -1,14 +1,30 @@
-import React from 'react';
-import { publicRoutes, privateRoutes } from '../utils/routes';
-import { useRoutes } from 'react-router';
+// import React from 'react';
+// import { publicRoutes, privateRoutes } from '../utils/routes';
+// import { useRoutes } from 'react-router';
+
+// const Pages = () => {
+
+//     const token = localStorage.getItem('Token')
+
+
+//     return (
+//         <div className='min-h-[80vh] bg-neutral-400'>
+//             {useRoutes(token ? privateRoutes : publicRoutes)}
+//         </div>
+//     );
+// };
+
+// export default Pages;
+
+import React from "react";
+import { publicRoutes, privateRoutes } from "../utils/routes";
+import { useRoutes } from "react-router";
 
 const Pages = () => {
-
-    const token = localStorage.getItem('Token')
-
+    const token = localStorage.getItem("Token");
 
     return (
-        <div className='min-h-[80vh] bg-neutral-400'>
+        <div className="min-h-[80vh] bg-neutral-400">
             {useRoutes(token ? privateRoutes : publicRoutes)}
         </div>
     );

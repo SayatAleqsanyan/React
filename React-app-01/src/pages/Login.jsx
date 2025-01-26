@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { REGISTER_PAGE } from "../utils/routes";
@@ -47,9 +51,12 @@ const Login = () => {
         if (savedUser) {
             setUserLogin(savedUser.name);
             setUserPassword(savedUser.password);
+        } else {
+            setUserLogin(""); 
+            setUserPassword(""); 
         }
     }, []);
-    
+
     const getUsers = async () => {
         try {
             const response = await axios.get("http://localhost:4000/users");
