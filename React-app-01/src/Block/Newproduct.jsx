@@ -2,14 +2,7 @@ import { FiFilePlus } from "react-icons/fi";
 import React, { useState } from "react";
 import axios from "axios";
 import { notify } from "../utils/notify";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
-
+import Sdider from "../Block/Sdider";
 
 const getProducts = async () => {
     try {
@@ -157,24 +150,7 @@ const NewProduct = ({ refreshProducts }) => {
                 </form>
             )}
 
-            <div>
-                <Swiper
-                    spaceBetween={10}
-                    effect={"fade"}
-                    navigation={true}
-                    autoplay={true}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[EffectFade, Navigation, Pagination, Autoplay]}
-                    className="mySwiper select-none"
-                >
-                    {productsInfo.map(item =>(
-                        <SwiperSlide key={item.id}><img src={item.image} alt=""/>
-                    </SwiperSlide>))}
-
-                </Swiper>
-            </div>
+            <Sdider productsInfo={productsInfo} />
         </div>
     );
 };

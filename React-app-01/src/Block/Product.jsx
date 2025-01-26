@@ -4,19 +4,19 @@ import { NavLink } from "react-router-dom";
 const Product = ({ products, deleteProduct, refreshProducts }) => {
     
     return (
-        <div className="flex flex-wrap justify-start">
+        <div className="flex flex-wrap justify-around">
             {products.map((item) => (
                 <div className="card" key={item.id}>
-                    <div className="max-w-sm rounded overflow-hidden shadow-lg m-5 p-5 bg-gray-100 text-gray-800 w-[225px] h-[400px]">
+                    <div className="max-w-sm rounded overflow-hidden shadow-lg m-5 p-5 bg-gray-100 text-gray-800 w-[300px] h-[500px] text-center">
                         <img
-                            className="w-[220px] h-[220px] object-cover"
+                            className="w-[250px] h-[250px] object-cover m-[5px]"
                             src={item.image || "https://picsum.photos/200"}
                             alt="Product Images"
                         />
                         <div className="px-6 py-4">
                             <div className="font-bold text-xl mb-2">
                                 <NavLink to={"/products/" + item.id}>
-                                    Product: {item.name}
+                                    {item.name}
                                 </NavLink>
                             </div>
                             <div>{item.price}{" $"}</div>
