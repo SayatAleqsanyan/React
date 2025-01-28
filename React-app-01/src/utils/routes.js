@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import UsersControl from "../pages/UsersControl";
 import Products from "../pages/Products";
+import Countries from "../pages/Countries";
 
 export const LOGIN_PAGE = "/login";
 export const REGISTER_PAGE = "/register";
@@ -13,6 +14,7 @@ export const HOME_PAGE = "/";
 export const ABOUT_PAGE = "/about";
 export const USERSCONTROL_PAGE = "/userscontrol";
 export const PRODUCTS_PAGE = "/products";
+export const COUNTRIES_PAGE = "/countries";
 
 export const publicRoutes = [
     { path: LOGIN_PAGE, element: <Login />, name: "Login", menu: true },
@@ -28,6 +30,12 @@ export const publicRoutes = [
 export const privateRoutes = [
     { path: HOME_PAGE, element: <Home />, name: "Home", menu: true },
     { path: ABOUT_PAGE, element: <About />, name: "About", menu: true },
+    {
+        path: COUNTRIES_PAGE,
+        element: <Countries />,
+        name: "Countries",
+        menu: true,
+    },
     {
         path: USERSCONTROL_PAGE,
         element: <UsersControl />,

@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Product = ({ products, deleteProduct, refreshProducts }) => {
-    
     return (
         <div className="flex flex-wrap justify-around">
             {products.map((item) => (

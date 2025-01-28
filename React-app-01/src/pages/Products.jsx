@@ -30,6 +30,9 @@ const Products = () => {
         setProducts(filteredCard);
     };
 
+    console.log(products);
+    
+
     useEffect(() => {
         fetchProducts();
     }, []);

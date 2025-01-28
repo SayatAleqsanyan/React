@@ -2,7 +2,7 @@ import { FiFilePlus } from "react-icons/fi";
 import React, { useState } from "react";
 import axios from "axios";
 import { notify } from "../utils/notify";
-import Sdider from "../Block/Sdider";
+import Slider from "./Slider";
 
 const getProducts = async () => {
     try {
@@ -82,6 +82,9 @@ const NewProduct = ({ refreshProducts }) => {
 
     return (
         <div>
+
+            <Slider productsInfo={productsInfo} />
+
             <span className="m-10">
                 <button
                     onClick={() => setFormVisible(!formVisible)}
@@ -149,8 +152,6 @@ const NewProduct = ({ refreshProducts }) => {
                     </button>
                 </form>
             )}
-
-            <Sdider productsInfo={productsInfo} />
         </div>
     );
 };
