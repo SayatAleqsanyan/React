@@ -1,17 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import "./css/index.css";
 import App from "./App";
 import { ToastContainer } from "react-toastify";
 import { CountryProvider } from "./providers/CountryProvider";
-
+import { ProductProvider } from "./providers/ProductProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <BrowserRouter>
         <CountryProvider>
-            <App />  
+            <ProductProvider>
+                <App />{" "}
+            </ProductProvider>
         </CountryProvider>
 
         <ToastContainer />

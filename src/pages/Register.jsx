@@ -115,7 +115,6 @@ const Register = () => {
             console.log(error.message);
         }
 
-        localStorage.setItem("users", JSON.stringify(users));
         notify("Registration successful!", "green");
         navigate(LOGIN_PAGE);
         setUserLogin("");

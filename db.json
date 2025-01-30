@@ -9,78 +9,60 @@
     {
       "id": "1",
       "userName": "John Doe",
-      "email": "zvB0Z@example.com",
+      "email": "zvjhZ@example.com",
       "password": "password123"
     },
     {
-      "id": "1686",
-      "userName": "wdasfdasdfa",
-      "password": "1111111111"
-    },
-    {
-      "id": "6502",
-      "userName": "asdasdfasfda",
-      "password": "11111111111"
-    },
-    {
-      "id": "f58e",
-      "userName": "dasdada",
-      "password": "111111111"
-    },
-    {
-      "id": "db55",
-      "userName": "asfdasfda",
-      "password": "11111111111"
-    },
-    {
-      "id": "ea70",
-      "userName": "sadasda",
+      "id": "2",
+      "userName": "asfdasfafdsa",
+      "email": "afsdasda@dsa.ri",
       "password": "11111111"
     },
     {
-      "id": "1259",
-      "userName": "dadsadfsa",
-      "password": "444444444"
+      "id": "3",
+      "userName": "John Doe",
+      "email": "DvB0Z@example.com",
+      "password": "password123"
     },
     {
-      "id": "9",
-      "userName": "asfdasfafdsa",
-      "password": "11111111",
-      "email": "asdasda@dsa.ri"
+      "id": "4",
+      "userName": "kkasfdasfggafdsa",
+      "email": "asdkasda@dsa.ri",
+      "password": "11111111"
     },
     {
-      "id": "10",
-      "userName": "fsdafas2",
-      "password": "1111111111",
-      "email": "asdasda@dsa.ri"
+      "id": "5",
+      "userName": "sdfasga",
+      "email": "Cafsasdasda@dsa.ri",
+      "password": "11111111"
     },
     {
-      "id": "11",
-      "userName": "safash",
-      "password": "11111111",
-      "email": "asdasda@dsa.ri"
+      "id": "6",
+      "userName": "JohnDevs",
+      "email": "DvB0Z@example.com",
+      "password": "password123"
     },
     {
-      "id": "12",
-      "userName": "zCzCzfg",
-      "password": "11111111",
-      "email": "asdasda@dsa.ri"
+      "id": "7",
+      "userName": "kfdsfggafdsa",
+      "email": "sdfasdkasda@dsa.ri",
+      "password": "11111111"
     }
   ],
   "products": [
     {
-      "id": "1",
       "name": "Product 1",
       "price": 10.99,
       "description": "Description of Product 1",
-      "image": "https://picsum.photos/id/11/1000/700.jpg"
+      "image": "https://picsum.photos/id/11/1000/700.jpg",
+      "id": "1"
     },
     {
-      "id": "2",
       "name": "Product 2",
       "price": 19.99,
       "description": "Description of Product 2",
-      "image": "https://picsum.photos/id/12/1000/700.jpg"
+      "image": "https://picsum.photos/id/12/1000/700.jpg",
+      "id": "2"
     },
     {
       "id": "3",
@@ -104,11 +86,11 @@
       "image": "https://picsum.photos/id/15/1000/700.jpg"
     },
     {
-      "id": "6",
       "name": "Product 6",
       "price": 19.99,
       "description": "Description of Product 6",
-      "image": "https://picsum.photos/id/16/1000/700.jpg"
+      "image": "https://picsum.photos/id/16/1000/700.jpg",
+      "id": "6"
     },
     {
       "id": "7",
@@ -132,11 +114,11 @@
       "image": "https://picsum.photos/id/19/1000/700.jpg"
     },
     {
-      "id": "10",
       "name": "Product 10",
       "price": 19.99,
       "description": "Description of Product 10",
-      "image": "https://picsum.photos/id/20/1000/700.jpg"
+      "image": "https://picsum.photos/id/20/1000/700.jpg",
+      "id": "10"
     },
     {
       "id": "11",
@@ -174,11 +156,11 @@
       "image": "https://picsum.photos/id/25/1000/700.jpg"
     },
     {
-      "id": "16",
       "name": "Product 16",
       "price": "29.9",
       "description": "Description of Product 16",
-      "image": "https://picsum.photos/id/26/1000/700.jpg"
+      "image": "https://picsum.photos/id/26/1000/700.jpg",
+      "id": "16"
     },
     {
       "id": "17",
@@ -195,16 +177,16 @@
       "image": "https://picsum.photos/id/28/1000/700.jpg"
     },
     {
-      "id": "19",
+      "id": "781a",
       "name": "Product 19",
-      "price": "39.99",
+      "price": "29.99",
       "description": "Description of Product 19",
       "image": "https://picsum.photos/id/29/1000/700.jpg"
     },
     {
-      "id": "20",
+      "id": "a4c6",
       "name": "Product 20",
-      "price": "39.99",
+      "price": "59.99",
       "description": "Description of Product 20",
       "image": "https://picsum.photos/id/30/1000/700.jpg"
     }

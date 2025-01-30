@@ -16,14 +16,14 @@ const UsersList = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const storedUsers = localStorage.getItem("users");
+        const storedUsers = null // localStorage.getItem("users");
         if (storedUsers) {
             setUsers(JSON.parse(storedUsers));
         } else {
             const fetchUsers = async () => {
                 const allUsers = await getUsers();
                 setUsers(allUsers);
-                localStorage.setItem("users", JSON.stringify(allUsers));
+                // localStorage.setItem("users", JSON.stringify(allUsers));
             };
             fetchUsers();
         }
@@ -39,7 +39,7 @@ const UsersList = () => {
     const deleteUser = (id) => {
         const updatedUsers = users.filter((user) => user.id !== id);
         const reindexedUsers = reassignIds(updatedUsers);
-        localStorage.setItem("users", JSON.stringify(reindexedUsers));
+        // localStorage.setItem("users", JSON.stringify(reindexedUsers));
         setUsers(reindexedUsers);
     };
 
