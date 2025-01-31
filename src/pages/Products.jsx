@@ -7,8 +7,10 @@ import 'react-range-slider-input/dist/style.css'
 const Products = () => {
     const [sort, setSort] = useState('default')
     const {
+        value,
+        setValue,
+        filteredProducts,
         sortProducts,
-        sortedProducts,
         products,
         loading,
         error,
@@ -62,15 +64,25 @@ const Products = () => {
         setEditProduct(null)
     }
 
-    useEffect(() => {
-        sortProducts(sort) 
-    }, [sort])
-
-    const [value, setValue] = useState([1, 2000])
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(1000);
 
     useEffect(() => {
-        console.log(value)
-    }, [value])
+        if (products.length > 0) {
+            const min = Math.min(...products.map((p) => p.price));
+            const max = Math.max(...products.map((p) => p.price));
+
+            setMinPrice(Math.floor(min));
+            setMaxPrice(Math.ceil(max));
+
+            // ✅ Թարմացնում ենք RangeSlider-ի սահմանները
+            setValue([min, max]);
+        }
+    }, [products]); // Կաշխատի միայն երբ ապրանքները փոխվեն
+
+    useEffect(() => {
+        sortProducts(sort);
+    }, [sort]);
 
     if (loading) return <div>Loading...</div>
     if (error) return <div>Error: {error}</div>
@@ -144,26 +156,36 @@ const Products = () => {
                     </button>
                 </form>
 
-                <select id="sort" onChange={(e) => setSort(e.target.value)}>
+                <RangeSlider
+                    className="p w-[80%] my-5"
+                    min={minPrice}
+                    max={maxPrice}
+                    step={(maxPrice - minPrice) / 100}
+                    value={value}
+                    onInput={setValue}
+                />
+
+                <p className="text-lg font-semibold">
+                    Filtered Price Range: ${value[0]} - ${value[1]}
+                </p>
+
+                <select id="sort"
+                    onChange={(e) =>
+                        setSort(e.target.value)}
+                    className="w-[200px] p-2 border rounded mt-5"
+                >
                     <option value="default">Sort by</option>
                     <option value="price">Price</option>
                     <option value="name">Name</option>
                 </select>
 
-                <RangeSlider
-                    min={1}
-                    max={2000}
-                    step={10}
-                    value={[value[0], value[1]]}
-                    onInput={setValue}
-                />
-
                 <div className="flex flex-wrap justify-center mt-8">
-                    {sortedProducts.map((product) => (
+                    {filteredProducts.map((product) => (
                         <div
                             key={product.id}
                             className="m-4 p-4 border rounded shadow-lg w-80 text-center bg-gray-100"
                         >
+                            {!(editProduct === product.id) && <div>
                             <h3 className="font-bold text-lg">
                                 {product.name}
                             </h3>
@@ -190,6 +212,7 @@ const Products = () => {
                                     Delete
                                 </button>
                             </div>
+                            </div>}
                             {editProduct === product.id && (
                                 <div className="mt-4 p-4 bg-white border rounded">
                                     <input
