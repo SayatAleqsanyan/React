@@ -1,54 +1,56 @@
-
 html,
 body {
-    position: relative;
-    height: 100%;
+  position: relative;
+  height: 100%;
 }
 
 body {
-    background: #eee;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color: #000;
-    margin: 0;
-    padding: 0;
+  background: #eee;
+  font-family:
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
 }
 
 #root {
-    height: 100%;
+  height: 100%;
 }
 
 .swiper-slide {
-    background-position: center;
-    background-size: cover;
-    margin: 50px 0;
-    padding: 5px;
-    border-radius: 15px;
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+  background-position: center;
+  background-size: cover;
+  margin: 50px 0;
+  padding: 5px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .swiper-slide img {
-    background-size: cover;
-    display: block;
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    cursor: pointer;
+  background-size: cover;
+  display: block;
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .Slider {
-    margin: 200px auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 200px auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-

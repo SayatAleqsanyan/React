@@ -2,11 +2,10 @@
 // const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 // const usernameRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{1,}$/;
 
-
 // export const userValidation = {
 //      pattern: {
 //          value: usernameRegex,
-//          message: "Username error" 
+//          message: "Username error"
 //      },
 //      required: {
 //          value: true,

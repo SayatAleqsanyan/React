@@ -1,3 +1,7 @@
 {
-    "recommendations": ["eamodio.gitlens", "ms-ceintl.vscode-language-pack-ru"]
+  "recommendations": [
+    "eamodio.gitlens",
+    "ms-ceintl.vscode-language-pack-ru",
+    "esbenp.prettier-vscode"
+  ]
 }

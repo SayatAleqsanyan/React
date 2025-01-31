@@ -1,3 +1,90 @@
 {
-    "files.autoSave": "afterDelay"
+    // --- AutoSave Settings ---
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000, // Պահպանման ուշացում 1000 միլիՍեկ. (1 վայրկյան)
+
+    // --- LiveServer Settings ---
+    "liveServer.settings.donotShowInfoMsg": true,
+
+    // --- Code Formatting Settings ---
+    "editor.formatOnSave": true, // Կոդը ավտոմատ կերպով ձևաչափվում է ֆայլը պահպանելուց հետո
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // Prettier օգտագործվում է որպես հիմնական ձևաչափող
+
+    // --- Indentation Settings ---
+    "editor.tabSize": 4, // Բառարանների համար օգտագործվում է 4 ճարտարապետություն՝ Tab-ի չափի փոխարեն
+    "editor.insertSpaces": true, // Գրառումները օգտագործվում են որպես Spaces, ոչ Tabs
+    "editor.wordWrap": "bounded", // Կոդը չփաթեթավորվում է բացարձակապես (bounded), տողերի երկարության սահմանը հստակորեն սահմանված է
+
+    // --- IndentRainbow Settings ---
+    "indentRainbow.colorOnWhiteSpaceOnly": true, // IndentRainbow- ը ցուցադրում է indentation-ը միայն whitespace-ների վրա
+    "indentRainbow.ignoreErrorLanguages": [], // Ցուցադրվում են բոլոր լեզուները
+    "indentRainbow.excludedLanguages": [], // Ցուցադրվում են բոլոր լեզուները
+    "indentRainbow.updateDelay": 100, // Սահմանում է պատկերի թարմացման ուշացումը 100 միլիսեկունդում
+    "indentRainbow.colors": [
+        "rgba(255,255,64,0.2)", // Դեղին գույն
+        "rgba(127,255,127,0.2)", // Հասարակ կանաչ
+        "rgba(255,127,255,0.2)", // Վարդագույն
+        "rgba(79,236,236,0.2)" // Կապույտ կանաչ
+    ],
+
+    // --- IndentRainbow Light Mode Settings ---
+    "indentRainbow.indicatorStyle": "light", // Light mode-ի համար
+    "indentRainbow.lightIndicatorStyleLineWidth": 1, // Light mode-ի համար մեկ պիկսել լայնությամբ գիծ
+    "indentRainbow.colors": [
+        "rgba(255,255,64,1)", // Դեղին գույն
+        "rgba(127,255,127,1)", // Հասարակ կանաչ
+        "rgba(255,127,255,1)", // Վարդագույն
+        "rgba(79,236,236,1)" // Կապույտ կանաչ
+    ],
+
+    // --- CodeLens & Git Settings ---
+    "codeium.enableCodeLens": false, // CodeLens-ի համար Codeium- ի ներառումը անջատված է
+    "git.autofetch": true, // Git-ի թարմացումներից բաց չթողնել
+    "git.confirmSync": false, // Git-ի օպերացիաները չեն պահանջում հաստատումներ
+    "git.enableSmartCommit": true, // Git-ի ավտոմատ խելացի commit
+    "git.statusbar.enabled": true, // Git-ի ստատուսային բարի ցուցադրման տեսնում
+
+    // --- Editor Settings ---
+    "editor.guides.bracketPairs": true, // Կոդի մեջ փակագծերի ուղենիշները ակտիվ են
+    "editor.linkedEditing": true, // Կոդը պահպանելուց հետո նաև ակտիվացնել բացվածքներով խմբագրումը
+    "editor.suggest.preview": true, // Ավելի մեծ կանխատեսումներ՝ առավել հաճախ օգտագործվող առաջարկներով
+    "editor.suggestSelection": "recentlyUsedByPrefix", // Մտահոգվող առաջարկների ընտրությունը՝ վերջերս օգտագործվածից ըստ նախադասությունների նախշերի
+    "editor.mouseWheelZoom": true, // Կոդը քանդելու ժամանակ կատարված փոփոխությունների մասի ընթեռնելիության օգնություն
+    "editor.renderWhitespace": "none", // Էջերի ցուցադրում
+    "editor.renderControlCharacters": true, // Գրառումների լայնությունը հետևում է ծավալով և տեսանելիությամբ
+    "editor.renderLineHighlight": "all", // Ընդունված տողային ցածրացնողը
+
+    // --- Git & Terminal Settings ---
+    "explorer.confirmDelete": false, // Ինտեգրված Git-ի գործառույթը՝ ակնհայտ մեծացմամբ
+    "explorer.confirmDragAndDrop": false, // Կայքերի ակտիվացումներ՝ ստուգումների և մեկնաբանությունների հետ
+    "terminal.integrated.fontSize": 14, // Հանգստյան շարժող արդյունքներ՝ պիտույքները կդիտարկեն
+    "terminal.integrated.lineHeight": 1.4, // Հայտարարություն տողերի բարձրություն
+    "terminal.integrated.cursorBlinking": true, // Էկրանի վահանակը կարող է ցատկել կրկին
+    "terminal.integrated.fontFamily": "monospace", // Համառոտ տառատեսակների հարմարավետություն
+
+    // --- HTML, JavaScript & TypeScript Settings ---
+    "html.autoClosingTags": true, // HTML auto-closing tags
+    "javascript.autoClosingTags": true, // Javascript auto-closing tags
+    "typescript.autoClosingTags": true, // TypeScript auto-closing tags
+
+    // --- Spell Checking & Tabnine Settings ---
+    "cSpell.language": "en,ru", // Բառարանի աշխատանքը՝ անգլերեն և ռուսերեն
+    "tabnine.experimentalAutoImports": true, // Բառարանի մուտքը կատարելու համար նախադրյալները ավտոմատապես ներմուծվում են (Tabnine)
+
+    // --- Window & Zoom Settings ---
+    "window.zoomLevel": 0,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
+    "prettier.tabWidth": 4,
+    "prettier.useEditorConfig": false,
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+    "editor.wordWrapColumn": 120,
+    "liveServer.settings.donotVerifyTags": true,
+    "workbench.editor.empty.hint": "hidden",
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.formatOnSaveMode": "modifications",
+    
 }

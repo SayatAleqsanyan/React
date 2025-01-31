@@ -15,9 +15,9 @@ const ExampleMenu = ({ menu }) => {
                                 to={page.path}
                                 className={`font-bold text-2xl  text-white
                         ${
-                            pathname === page.path
-                                ? "text-[#B91F47]"
-                                : "text-black"
+                                    pathname === page.path
+                                        ? "text-[#B91F47]"
+                                        : "text-black"
                         } 
                         ${pathname !== page.path && "hover:text-[#00367E]"}`}
                             >

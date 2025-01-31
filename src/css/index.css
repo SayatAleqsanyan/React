@@ -3,11 +3,9 @@
 @tailwind utilities;
 
 #header .active {
-    color: #2eff51;
+  color: #2eff51;
 }
 
 #header :hover:not(.active) {
-    color: #6a92ff;
-} 
-
-
+  color: #6a92ff;
+}

@@ -5,129 +5,132 @@ import { notify } from "../utils/notify";
 import axios from "axios";
 
 const Register = () => {
-    const navigate = useNavigate();
-    const usernameRegex = /^[A-Za-z0-9]{5,15}$/;
-    const passwordRegex = /^[A-Za-z0-9]{8,15}$/;
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const navigate = useNavigate()
+    const usernameRegex = /^[A-Za-z0-9]{5,15}$/
+    const passwordRegex = /^[A-Za-z0-9]{8,15}$/
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-    const [userLogin, setUserLogin] = useState("");
-    const [userEmail, setUserEmail] = useState("");
-    const [userPassword, setUserPassword] = useState("");
-    const [userConfirmPassword, setUserConfirmPassword] = useState("");
-    const [userLoginDirty] = useState(false);
-    const [userEmailDirty] = useState(false);
-    const [userPasswordDirty] = useState(false);
-    const [userConfirmPasswordDirty] = useState(false);
-    const [userLoginError, setUserLoginError] = useState("Enter your login");
-    const [userEmailError, setUserEmailError] = useState("Enter your email");
+    const [userLogin, setUserLogin] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+    const [userPassword, setUserPassword] = useState('')
+    const [userConfirmPassword, setUserConfirmPassword] = useState('')
+    const [userLoginDirty] = useState(false)
+    const [userEmailDirty] = useState(false)
+    const [userPasswordDirty] = useState(false)
+    const [userConfirmPasswordDirty] = useState(false)
+    const [userLoginError, setUserLoginError] = useState('Enter your login')
+    const [userEmailError, setUserEmailError] = useState('Enter your email')
     const [userPasswordError, setUserPasswordError] =
-        useState("Enter a password");
+        useState('Enter a password')
     const [userConfirmPasswordError, setUserConfirmPasswordError] =
-        useState("Confirm password");
+        useState('Confirm password')
 
     const validateField = (e) => {
         if (e && e.target) {
-            const { name, value } = e.target;
+            const { name, value } = e.target
 
             switch (name) {
-                case "userLogin":
+                case 'userLogin':
                     if (!value) {
-                        setUserLoginError("Login cannot be empty");
+                        setUserLoginError('Login cannot be empty')
                     } else if (!usernameRegex.test(value)) {
                         setUserLoginError(
-                            "Login must contain at least one letter and one number"
-                        );
+                            'Login must contain at least one letter and one number'
+                        )
                     } else {
-                        setUserLoginError("");
+                        setUserLoginError('')
                     }
-                    break;
-                case "userEmail":
+                    break
+                case 'userEmail':
                     if (!value) {
-                        setUserEmailError("Email cannot be empty");
+                        setUserEmailError('Email cannot be empty')
                     } else if (!emailRegex.test(value)) {
-                        setUserEmailError(
-                            "Email must be valid"
-                        );
+                        setUserEmailError('Email must be valid')
                     } else {
-                        setUserEmailError("");
+                        setUserEmailError('')
                     }
-                    break;
-                case "userPassword":
+                    break
+                case 'userPassword':
                     if (!value) {
-                        setUserPasswordError("Password cannot be empty");
+                        setUserPasswordError('Password cannot be empty')
                     } else if (!passwordRegex.test(value)) {
                         setUserPasswordError(
-                            "Password must be between 8 to 16 characters, and contain at least one number and one special character"
-                        );
+                            'Password must be between 8 to 16 characters, and contain at least one number and one special character'
+                        )
                     } else {
-                        setUserPasswordError("");
+                        setUserPasswordError('')
                     }
-                    break;
-                case "userConfirmPassword":
+                    break
+                case 'userConfirmPassword':
                     if (value !== userPassword) {
-                        setUserConfirmPasswordError("Passwords don't match");
+                        setUserConfirmPasswordError("Passwords don't match")
                     } else {
-                        setUserConfirmPasswordError("");
+                        setUserConfirmPasswordError('')
                     }
-                    break;
+                    break
                 default:
-                    break;
+                    break
             }
         }
-    };
+    }
 
     const blurHandler = (e) => {
-        validateField(e);
-    };
+        validateField(e)
+    }
 
     const getUsers = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/users");
-            return response.data; 
+            const response = await axios.get('http://localhost:4000/users')
+            return response.data
         } catch (error) {
-            console.log(error.message);
-            return [];
+            console.log(error.message)
+            return []
         }
-    };
+    }
 
     const registration = async (event) => {
-        event.preventDefault();
-        const users = await getUsers();
+        event.preventDefault()
+        const users = await getUsers()
 
-        const id = users.length + 1;
-        const userName = userLogin;
-        const password = userPassword;
-        const email = userEmail;
+        const id = users.length + 1
+        const userName = userLogin
+        const password = userPassword
+        const email = userEmail
 
-        if (users.find(user => user.name === userName)) {
-            notify("A user with the same name already exists.", "red");
-            return;
+        if (users.find((user) => user.name === userName)) {
+            notify('A user with the same name already exists.', 'red')
+            return
         }
 
         if (password !== userConfirmPassword) {
-            notify("Passwords don't match.", "red");
-            return;
+            notify("Passwords don't match.", 'red')
+            return
         }
 
         try {
-            axios.post("http://localhost:4000/users", { userName, password, email, id});
+            axios.post('http://localhost:4000/users', {
+                userName,
+                password,
+                email,
+                id,
+            })
         } catch (error) {
-            console.log(error.message);
+            console.log(error.message)
         }
 
-        notify("Registration successful!", "green");
-        navigate(LOGIN_PAGE);
-        setUserLogin("");
-        setUserPassword("");
-        setUserConfirmPassword("");
-    };
+        notify('Registration successful!', 'green')
+        navigate(LOGIN_PAGE)
+        setUserLogin('')
+        setUserPassword('')
+        setUserConfirmPassword('')
+    }
 
     const isFormValid =
         userLogin &&
         userPassword &&
         userConfirmPassword &&
         !userLoginError &&
-        !userPasswordError;
+        !userPasswordError
 
     return (
         <div className="min-h-[500px] p-[50px] h-[80vh] flex items-center justify-center select-none">
@@ -219,15 +222,15 @@ const Register = () => {
                     disabled={!isFormValid}
                     className={`border border-black rounded-xl w-64 ${
                         isFormValid
-                            ? "bg-amber-50 hover:bg-sky-200"
-                            : "bg-red-200"
+                        ? 'bg-amber-50 hover:bg-sky-200'
+                        : 'bg-red-200'
                     }`}
                 >
                     Register
                 </button>
 
                 <p>
-                    Have an account?{" "}
+                    Have an account?{' '}
                     <NavLink
                         to={LOGIN_PAGE}
                         className="underline text-blue-800"
@@ -237,7 +240,7 @@ const Register = () => {
                 </p>
             </form>
         </div>
-    );
+    )
 };
 
 export default Register;

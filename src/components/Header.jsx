@@ -6,13 +6,16 @@ import { USERSCONTROL_PAGE } from "../utils/routes";
 // import UsersControl from "../pages/UsersControl";
 
 const Header = () => {
-    const token = localStorage.getItem("Token");
+    const token = localStorage.getItem('Token')
 
     return (
-        <div id ="header" className="h-[10vh] w-[100%] bg-gray-500 text-center flex items-center justify-between px-10">
+        <div
+            id="header"
+            className="h-[10vh] w-[100%] bg-gray-500 text-center flex items-center justify-between px-10"
+        >
             <Menu />
 
-            {token === "Admin" && (
+            {token === 'Admin' && (
                 <div>
                     <NavLink
                         className="text-2xl font-bold text-white"
@@ -28,8 +31,8 @@ const Header = () => {
                     <span
                         className="cursor-pointer hover:text-red-200"
                         onClick={() => {
-                            localStorage.removeItem("Token");
-                            window.location.reload();
+                            localStorage.removeItem('Token')
+                            window.location.reload()
                         }}
                     >
                         {token}
@@ -37,15 +40,15 @@ const Header = () => {
 
                     <FaUserCircle
                         onClick={() => {
-                            localStorage.removeItem("Token");
-                            window.location.reload();
+                            localStorage.removeItem('Token')
+                            window.location.reload()
                         }}
                         className="text-7xl cursor-pointer text-slate-800 active:text-green-600 hover:text-slate-900 ml-5"
                     />
                 </h1>
             )}
         </div>
-    );
+    )
 };
 
 export default Header;
