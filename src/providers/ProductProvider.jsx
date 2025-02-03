@@ -14,7 +14,7 @@ export const ProductProvider = ({ children }) => {
     const [filteredProducts, setFilteredProducts] = useState([])
     const [value, setValue] = useState([0, 1000])
 
-    // 📌 Ֆունկցիա՝ տվյալներ ստանալու համար
+    // 📌 Ֆունկցիա՝ տվյալներ ստանալու համար (GET)
     const fetchData = async () => {
         setLoading(true)
         try {
@@ -75,7 +75,7 @@ export const ProductProvider = ({ children }) => {
         if (products.length > 0) {
             const minPrice = Math.min(...products.map(p => p.price));
             const maxPrice = Math.max(...products.map(p => p.price));
-            
+
             if (value[0] !== minPrice || value[1] !== maxPrice) {
                 setValue([minPrice, maxPrice]); // ✅ Կանխում ենք անվերջ setState-ը
             }
@@ -96,7 +96,7 @@ export const ProductProvider = ({ children }) => {
         setSortedProducts(sortedArray)
     }
 
-    
+
 
     const filterProducts = () => {
         const filteredArray = sortedProducts.filter(e => e.price >= value[0] && e.price <= value[1]);

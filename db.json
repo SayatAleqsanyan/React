@@ -190,5 +190,12 @@
       "description": "Description of Product 20",
       "image": "https://picsum.photos/id/30/1000/700.jpg"
     }
+  ],
+  "cources": [
+    {
+      "id": "1cfd",
+      "name": "fsafas",
+      "course": "400"
+    }
   ]
 }
