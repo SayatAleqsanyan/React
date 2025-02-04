@@ -17,8 +17,6 @@ const Posts = () => {
     const [posts, setPosts] = useState([])
     posts.length = 100
 
-    console.log(posts[0])
-
     const fetchPosts = async () => {
         const filteredPosts = await getPosts()
         setPosts(filteredPosts)

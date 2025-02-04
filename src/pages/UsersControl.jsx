@@ -75,7 +75,8 @@ const UsersList = () => {
                     className={
                       !user.isBlocked
                         ? "text-green-600 hover:text-green-800"
-                        : "text-red-600 hover:text-red-800"
+                        : "text-red-600 hover:text-red-800" +
+                          "  w-[75px]"
                     }
                     onClick={() => {
                       if (user.userName === "Admin") {
@@ -95,7 +96,7 @@ const UsersList = () => {
               {user.userName !== "Admin" && (
                 <td className="py-2 px-4 border-b">
                   <button
-                    className="text-red-600 hover:text-red-800"
+                    className="text-red-600 hover:text-red-800 w-[75px]"
                     onClick={() => {
                       if (user.userName === "Admin") {
                         notify("You can't delete this user!", "blue");
