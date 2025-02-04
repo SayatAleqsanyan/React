@@ -9,6 +9,7 @@ import Products from "../pages/Products";
 import Countries from "../pages/Countries";
 import Posts from "../pages/Posts";
 import Change from "../pages/change";
+import Country from "../pages/Country";
 
 export const LOGIN_PAGE = "/login";
 export const REGISTER_PAGE = "/register";
@@ -19,6 +20,7 @@ export const PRODUCTS_PAGE = "/products";
 export const COUNTRIES_PAGE = "/countries";
 export const POSTS_PAGE = "/posts";
 export const CHANGE_PAGE = "/change";
+export const COUNTRY_PAGE = "/country";
 
 export const publicRoutes = [
   {path: LOGIN_PAGE, element: <Login/>, name: "Login", menu: true},
@@ -64,5 +66,6 @@ export const privateRoutes = [
     name: "Change",
     menu: true,
   },
+  { path: COUNTRY_PAGE, element: <Country />, name: "Country", menu: true },
   {path: "*", element: <Navigate to={HOME_PAGE}/>},
 ];

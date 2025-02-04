@@ -201,24 +201,14 @@
   ],
   "cources": [
     {
-      "name": "gdsdfgs",
-      "course": "10",
-      "id": "fb20"
-    },
-    {
       "name": "fsdasf",
       "course": "500",
       "id": "93f1"
     },
     {
-      "id": "c13b",
-      "name": "afdsfa",
-      "course": "100"
-    },
-    {
-      "id": "80a3",
       "name": "dfadfsa",
-      "course": "600"
+      "course": "600",
+      "id": "80a3"
     },
     {
       "id": "b03d",
@@ -226,14 +216,9 @@
       "course": "300"
     },
     {
-      "id": "ac9a",
       "name": "dasds",
-      "course": "100"
-    },
-    {
-      "id": "a7a6",
-      "name": "ddcv",
-      "course": "700"
+      "course": "100",
+      "id": "ac9a"
     }
   ]
 }
