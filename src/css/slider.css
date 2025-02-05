@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
   position: relative;
@@ -19,6 +25,34 @@ body {
 
 #root {
   height: 100%;
+}
+
+#App {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#header {
+  min-height: 89px;
+  flex-shrink: 0;
+}
+
+#main {
+  flex-grow: 1;
+}
+
+#footer {
+  min-height: 89px;
+  flex-shrink: 0;
+}
+
+#header .active {
+  color: #2eff51;
+}
+
+#header :hover:not(.active) {
+  color: #6a92ff;
 }
 
 .swiper-slide {

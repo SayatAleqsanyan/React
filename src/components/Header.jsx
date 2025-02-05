@@ -9,7 +9,7 @@ const Header = () => {
     const token = localStorage.getItem('Token')
 
     return (
-        <div
+        <header
             id="header"
             className="h-[10vh] w-[100%] bg-gray-500 text-center flex items-center justify-between px-10"
         >
@@ -47,7 +47,7 @@ const Header = () => {
                     />
                 </h1>
             )}
-        </div>
+        </header>
     )
 };
 

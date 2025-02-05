@@ -18,7 +18,7 @@ const ExampleMenu = ({ menu }) => {
                                     pathname === page.path
                                         ? "text-[#B91F47]"
                                         : "text-black"
-                        } 
+                        }
                         ${pathname !== page.path && "hover:text-[#00367E]"}`}
                             >
                                 {page.name}
@@ -35,13 +35,13 @@ const Menu = () => {
     const token = localStorage.getItem("Token");
 
     return (
-        <div>
+        <nav id="menu">
             {token ? (
                 <ExampleMenu menu={privateRoutes} />
             ) : (
                 <ExampleMenu menu={publicRoutes} />
             )}
-        </div>
+        </nav>
     );
 };
 

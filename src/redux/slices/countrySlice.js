@@ -1,6 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-
+import { createSlice } from '@reduxjs/toolkit'
 
 const countrySlice = createSlice({
   name: 'country',
@@ -18,21 +16,26 @@ const countrySlice = createSlice({
         id: Math.random(),
         name: 'UK',
       },
-
     ],
   },
+
   reducers: {
     addCountry: (state, action) => {
-      state.countries.push(action.payload);
+      state.countries.push(action.payload)
     },
     removeCountry: (state, action) => {
-      state.countries = state.countries.filter((country) => country.id !== action.payload);
+      state.countries = state.countries.filter(
+        country => country.id !== action.payload
+      )
     },
-
+    editCountry: (state, action) => {
+      const find = state.countries.find(c => c.id === action.payload.id)
+      if (find) {
+        find.name = action.payload.name
+      }
+    },
   },
+})
 
-});
-
-
-export const { addCountry, removeCountry } = countrySlice.actions;
-export default countrySlice.reducer;
+export const { addCountry, removeCountry, editCountry } = countrySlice.actions
+export default countrySlice.reducer
