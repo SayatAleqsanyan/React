@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useCountry } from '../../providers/CountryProvider'
+import { useCountry } from '../../../providers/CountryProvider'
 
 const Countries = () => {
   const { countries, addCountry, removeCountry, editCountry } = useCountry()
@@ -8,19 +8,19 @@ const Countries = () => {
   const [text, setText] = useState('Add')
   return (
     <div>
-      <ul className='flex flex-col gap-2'>
+      <ul className="flex flex-col gap-2">
         {countries.map(country => (
-          <li key={country.id} className='flex  gap-2'>
+          <li key={country.id} className="flex  gap-2">
             {country.name}
             <button
-              className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => removeCountry(country.id)}
             >
               Remove
             </button>
 
             <button
-              className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => {
                 setId(country.id)
                 setName(country.name)
@@ -33,12 +33,7 @@ const Countries = () => {
         ))}
       </ul>
 
-      <input
-        type='text'
-        placeholder='Add Country'
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
+      <input type="text" placeholder="Add Country" value={name} onChange={e => setName(e.target.value)} />
       <button
         onClick={() => {
           if (!id) {

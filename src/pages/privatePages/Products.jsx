@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { ProductContext } from '../../providers/ProductProvider'
-import Slider from '../../Block/Slider'
+import Slider from '../../components/Slider'
 import RangeSlider from 'react-range-slider-input'
 import 'react-range-slider-input/dist/style.css'
 

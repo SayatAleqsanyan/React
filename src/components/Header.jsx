@@ -1,9 +1,9 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
-import Menu from "./Menu";
 import { NavLink } from "react-router-dom";
 import { USERSCONTROL_PAGE } from "../utils/routes";
-// import UsersControl from "../pages/UsersControl";
+import Menu from "./Menu";
+
 
 const Header = () => {
     const token = localStorage.getItem('Token')
@@ -13,7 +13,7 @@ const Header = () => {
             id="header"
             className="h-[10vh] w-[100%] bg-gray-500 text-center flex items-center justify-between px-10"
         >
-            <Menu />
+            <Menu/>
 
             {token === 'Admin' && (
                 <div>

@@ -1,11 +1,5 @@
 import React, { useEffect, useReducer, useState } from 'react'
-import {
-  addCource,
-  reducer,
-  getCources,
-  deleteCource,
-  editCource,
-} from '../../utils/reducers/changeReducer'
+import { addCource, reducer, getCources, deleteCource, editCource } from '../../../utils/reducers/changeReducer'
 
 const Change = () => {
   const [name, setName] = useState('')
@@ -67,53 +61,53 @@ const Change = () => {
 
   return (
     <div>
-      <h2 className='text-7xl text-center'>Change</h2>
+      <h2 className="text-7xl text-center">Change</h2>
 
       <form
         onSubmit={editingId ? handleUpdate : handleSubmit}
-        className='flex flex-col justify-center items-center gap-4 m-5'
+        className="flex flex-col justify-center items-center gap-4 m-5"
       >
         <input
-          className='block w-[300px] p-2 text-lg'
-          type='text'
+          className="block w-[300px] p-2 text-lg"
+          type="text"
           value={name}
           onChange={e => setName(e.target.value)}
-          placeholder='Enter name'
+          placeholder="Enter name"
         />
         <input
-          className='block w-[300px] p-2 text-lg'
-          type='text'
+          className="block w-[300px] p-2 text-lg"
+          type="text"
           value={course}
           onChange={e => setCourse(e.target.value)}
-          placeholder='Enter course'
+          placeholder="Enter course"
         />
 
         <button
-          className='block w-[300px] p-2 text-lg bg-blue-500 text-white rounded-md hover:bg-blue-700 active:bg-blue-900'
-          type='submit'
+          className="block w-[300px] p-2 text-lg bg-blue-500 text-white rounded-md hover:bg-blue-700 active:bg-blue-900"
+          type="submit"
         >
           {editingId ? 'Update' : 'Add'}
         </button>
       </form>
 
-      <div className='flex justify-evenly items-center flex-wrap gap-4 w-full border-gray-100 p-10 '>
+      <div className="flex justify-evenly items-center flex-wrap gap-4 w-full border-gray-100 p-10 ">
         {state.length > 0 ? (
           state.map(item => (
             <div
               key={item.id}
-              className='m-5 p-10 text-center min-w-[300px] min-h-[200px] flex flex-col justify-around bor max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700'
+              className="m-5 p-10 text-center min-w-[300px] min-h-[200px] flex flex-col justify-around bor max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
             >
-              <p className='font-bold text-lg p-2'>{item.name}</p>
-              <p className='font-bold text-lg p-2'>{item.course}</p>
-              <div className='flex justify-evenly items-center gap-4'>
+              <p className="font-bold text-lg p-2">{item.name}</p>
+              <p className="font-bold text-lg p-2">{item.course}</p>
+              <div className="flex justify-evenly items-center gap-4">
                 <button
-                  className='w-[100px] p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 active:bg-blue-900'
+                  className="w-[100px] p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 active:bg-blue-900"
                   onClick={() => handleEdit(item)}
                 >
                   Edit
                 </button>
                 <button
-                  className='w-[100px] p-2 bg-red-500 text-white rounded-md hover:bg-red-700 active:bg-red-900'
+                  className="w-[100px] p-2 bg-red-500 text-white rounded-md hover:bg-red-700 active:bg-red-900"
                   onClick={() => handleDelete(item.id)}
                 >
                   Remove

@@ -8,6 +8,8 @@ import { CountryProvider } from './providers/CountryProvider'
 import { ProductProvider } from './providers/ProductProvider'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import './i18n'
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <BrowserRouter>

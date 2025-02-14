@@ -75,7 +75,7 @@ const UsersList = () => {
                     className={
                       !user.isBlocked
                         ? 'text-green-600 hover:text-green-800'
-                        : 'text-red-600 hover:text-red-800' + '  w-[75px]'
+                        : 'text-red-600 hover:text-red-800 w-[75px]'
                     }
                     onClick={() => {
                       if (user.userName === 'Admin') {

@@ -6,11 +6,13 @@ import Home from '../pages/privatePages/Home'
 import About from '../pages/privatePages/About'
 import UsersControl from '../pages/adminPages/UsersControl'
 import Products from '../pages/privatePages/Products'
-import Countries from '../pages/privatePages/Countries'
-import Posts from '../pages/privatePages/Posts'
-import Change from '../pages/privatePages/change'
-import Country from '../pages/privatePages/Country'
-import Albums from '../pages/nowPages/Albums'
+import Countries from '../pages/privatePages/cards/Countries'
+import Posts from '../pages/privatePages/pageinate/Posts'
+import Change from '../pages/privatePages/cards/change'
+import Country from '../pages/privatePages/cards/Country'
+import Albums from '../pages/privatePages/cards/Albums'
+import PaginatedItems from '../pages/privatePages/pageinate/Pageinate'
+import PaginatedItems2 from '../pages/privatePages/pageinate/Pageinate2'
 
 export const LOGIN_PAGE = '/login'
 export const REGISTER_PAGE = '/register'
@@ -23,6 +25,8 @@ export const POSTS_PAGE = '/posts'
 export const CHANGE_PAGE = '/change'
 export const COUNTRY_PAGE = '/country'
 export const ALBUMS_PAGE = '/albums'
+export const PAGEINATE_PAGE = '/pageinate'
+export const PAGEINATE_PAGE2 = '/pageinate2'
 
 export const publicRoutes = [
   {
@@ -66,13 +70,15 @@ export const privateRoutes = [
     path: POSTS_PAGE,
     element: <Posts />,
     name: 'Posts',
-    menu: true,
+    menu: false,
+    type: 'paginate',
   },
   {
     path: COUNTRIES_PAGE,
     element: <Countries />,
     name: 'Countries',
-    menu: true,
+    menu: false,
+    type: 'cards',
   },
   {
     path: USERSCONTROL_PAGE,
@@ -84,19 +90,36 @@ export const privateRoutes = [
     path: CHANGE_PAGE,
     element: <Change />,
     name: 'Change',
-    menu: true,
+    menu: false,
+    type: 'cards',
   },
   {
     path: COUNTRY_PAGE,
     element: <Country />,
     name: 'Country',
-    menu: true,
+    menu: false,
+    type: 'cards',
   },
   {
     path: ALBUMS_PAGE,
     element: <Albums />,
     name: 'Albums',
-    menu: true,
+    menu: false,
+    type: 'cards',
+  },
+  {
+    path: PAGEINATE_PAGE,
+    element: <PaginatedItems />,
+    name: 'Pageinate',
+    menu: false,
+    type: 'paginate',
+  },
+  {
+    path: PAGEINATE_PAGE2,
+    element: <PaginatedItems2 />,
+    name: 'Pageinate2',
+    menu: false,
+    type: 'paginate',
   },
   {
     path: '*',

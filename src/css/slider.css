@@ -51,10 +51,6 @@ body {
   color: #2eff51;
 }
 
-#header :hover:not(.active) {
-  color: #6a92ff;
-}
-
 .swiper-slide {
   background-position: center;
   background-size: cover;
