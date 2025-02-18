@@ -5,45 +5,36 @@ import { NavLink, useLocation } from 'react-router-dom'
 const ExampleMenu = ({ menu }) => {
   const { pathname } = useLocation()
   const [isOpen, setIsOpen] = useState(false)
-  const [expandedGroups, setExpandedGroups] = useState({
-    cards: false,
-    paginate: false,
-  })
+  const [activeGroup, setActiveGroup] = useState(null)
 
   const menuItemsGroups = ['cards', 'paginate']
 
-  const toggleGroup = (group) => {
-    setExpandedGroups(prev => ({
-      ...prev,
-      [group]: !prev[group]
-    }))
-  }
-
   return (
     <ul className="flex gap-2">
-      {menu.map(page => (
-        page.menu && (
-          <li key={page.path}>
-            <NavLink
-              to={page.path}
-              className={`font-bold text-2xl text-white
+      {menu.map(
+        page =>
+          page.menu && (
+            <li key={page.path}>
+              <NavLink
+                to={page.path}
+                className={`font-bold text-2xl text-black dark:text-white
                 ${pathname === page.path ? 'text-[#B91F47]' : 'text-black'}
-                ${pathname !== page.path && 'hover:text-[#00367E]'}`}
-            >
-              {page.name}
-            </NavLink>
-          </li>
-        )
-      ))}
+                ${pathname !== page.path && 'hover:text-blue-700'}`}
+              >
+                {page.name}
+              </NavLink>
+            </li>
+          )
+      )}
 
       <li>
         <div style={{ position: 'relative', display: 'inline-block' }}>
           <button
-            className="font-bold text-2xl cursor-pointer"
-            onClick={() => setIsOpen(!isOpen)}
+            className="font-bold text-2xl cursor-pointer text-black dark:text-white"
+
+            onClick={e => setIsOpen(!isOpen)}
             style={{
               padding: '0 20px',
-              color: 'white',
               border: 'none',
               cursor: 'pointer',
               display: 'flex',
@@ -62,67 +53,95 @@ const ExampleMenu = ({ menu }) => {
           </button>
 
           <div
+            className="bg-white dark:bg-gray-900 text-black dark:text-white"
             style={{
               position: 'absolute',
               top: '100%',
               left: '0',
               marginTop: '8px',
-              backgroundColor: '#f9f9f9',
               minWidth: '160px',
               boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
               borderRadius: '4px',
-              overflow: 'hidden',
-              maxHeight: isOpen ? '500px' : '0',
               opacity: isOpen ? 1 : 0,
-              transition: 'max-height 0.3s ease, opacity 0.3s ease',
+              visibility: isOpen ? 'visible' : 'hidden',
+              transition: 'opacity 0.3s ease, visibility 0.3s ease',
             }}
           >
             <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
               {menuItemsGroups.map(group => (
-                <li key={group}>
-                  <button
-                    onClick={() => toggleGroup(group)}
+                <li
+                  key={group}
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    backgroundColor: activeGroup === group ? '#888' : 'transparent',
+                  }}
+                  onMouseEnter={() => setActiveGroup(group)}
+                  onMouseLeave={() => setActiveGroup(null)}
+                >
+                  <div
                     style={{
-                      width: '100%',
+                      position: 'relative',
                       padding: '12px 16px',
-                      textAlign: 'left',
-                      border: 'none',
-                      background: 'transparent',
                       cursor: 'pointer',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
                     }}
                   >
-                    <span style={{ textTransform: 'capitalize' }}>{group}</span>
-                    <span style={{ transition: 'transform 0.3s', transform: `rotate(${expandedGroups[group] ? 180 : 0}deg)` }}>
-                      ▼
-                    </span>
-                  </button>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <span style={{ textTransform: 'capitalize' }}>{group}</span>
+                      <span
+                        style={{
+                          transition: 'transform 0.3s',
+                          transform: `rotate(${activeGroup === group ? 180 : 0}deg)`,
+                        }}
+                      >
+                        ▼
+                      </span>
+                    </div>
 
-                  {expandedGroups[group] && (
-                    <ul style={{ margin: 0, paddingLeft: '16px', listStyle: 'none' }}>
-                      {menu
-                        .filter(page => page.type === group)
-                        .map(page => (
-                          <li key={page.path}>
-                            <NavLink
-                              to={page.path}
-                              className={`font-bold text-xl
-                                ${pathname === page.path ? 'text-[#B91F47]' : 'text-black'}
-                                ${pathname !== page.path && 'hover:text-[#00367E]'}`}
-                              style={{
-                                display: 'block',
-                                padding: '8px 16px',
-                                textDecoration: 'none'
-                              }}
-                            >
-                              {page.name}
-                            </NavLink>
-                          </li>
-                        ))}
-                    </ul>
-                  )}
+                    {activeGroup === group && (
+                      <ul
+                        className="bg-white dark:bg-gray-900 text-black dark:text-white"
+                        style={{
+                          position: 'absolute',
+                          left: '100%',
+                          top: '-8px',
+                          minWidth: '160px',
+                          boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
+                          borderRadius: '4px',
+                          margin: 0,
+                          padding: '8px 0',
+                          listStyle: 'none',
+                          zIndex: 1000,
+                        }}
+                      >
+                        {menu
+                          .filter(page => page.type === group)
+                          .map(page => (
+                            <li key={page.path}>
+                              <NavLink
+                                to={page.path}
+                                className={`font-bold text-xl
+                                  ${pathname === page.path ? 'text-[#B91F47]' : 'text-black dark:text-white'}
+                                  ${pathname !== page.path && 'hover:text-blue-700'}`}
+                                style={{
+                                  display: 'block',
+                                  padding: '8px 16px',
+                                  textDecoration: 'none',
+                                }}
+                              >
+                                {page.name}
+                              </NavLink>
+                            </li>
+                          ))}
+                      </ul>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>

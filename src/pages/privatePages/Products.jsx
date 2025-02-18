@@ -88,7 +88,7 @@ const Products = () => {
   if (error) return <div>Error: {error}</div>
 
   return (
-    <>
+    <div className='flex flex-col min-h-[100vh] w-[100vh'>
       <Slider productsInfo={products} />
       <div className='text-center p-5 select-none'>
         <h2 className='text-xl font-bold mb-4'>Products</h2>
@@ -279,7 +279,7 @@ const Products = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

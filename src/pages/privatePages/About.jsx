@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player'
 
 const About = () => {
     return (
-        <div className="min-h-[80vh] bg-neutral-400  flex justify-center items-center">
+        <div className="bg-neutral-400  flex justify-center items-center">
             <span className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                 About
                 <CountUp start={0} end={1000} delay={0}>
