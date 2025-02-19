@@ -1,57 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { REGISTER_PAGE } from '../../utils/routes'
-import { FaEyeSlash, FaEye } from 'react-icons/fa'
 import { notify } from '../../utils/notify'
+import { useForm } from 'react-hook-form'
+import { emailValidation, passwordValidation } from '../../utils/validations'
 import axios from 'axios'
+import Input from '../../components/ui/input'
+import Button from '../../components/ui/Button'
 
 const Login = () => {
-  const [userLogin, setUserLogin] = useState('')
-  const [userPassword, setUserPassword] = useState('')
-  const [userLoginDirty] = useState(false)
-  const [userPasswordDirty] = useState(false)
-  const [userLoginError, setUserLoginError] = useState('Enter login')
-  const [userPasswordError, setUserPasswordError] = useState('Enter password')
   const [rememberMe, setRememberMe] = useState(false)
-  const [eye, setEye] = useState(false)
-  const [passwordType, setPasswordType] = useState('password')
 
-  const showPassword = () => {
-    setEye(!eye)
-    setPasswordType(passwordType === 'password' ? 'text' : 'password')
-  }
-
-  const blurHandler = e => {
-    switch (e.target.name) {
-      case 'userLogin':
-        if (!e.target.value) {
-          setUserLoginError('Login cannot be empty')
-        } else {
-          setUserLoginError('')
-        }
-        break
-      case 'userPassword':
-        if (!e.target.value) {
-          setUserPasswordError('Password cannot be empty')
-        } else {
-          setUserPasswordError('')
-        }
-        break
-      default:
-        break
-    }
-  }
-
-  useEffect(() => {
-    const savedUser = JSON.parse(localStorage.getItem('rememberMe'))
-    if (savedUser) {
-      setUserLogin(savedUser.email)
-      setUserPassword(savedUser.password)
-    } else {
-      setUserLogin('')
-      setUserPassword('')
-    }
-  }, [])
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  })
 
   const getUsers = async () => {
     try {
@@ -63,116 +34,85 @@ const Login = () => {
     }
   }
 
-  const logining = async event => {
-    event.preventDefault()
+  const logining = async data => {
+    try {
+      const oldUsers = await getUsers()
+      const { email, password } = data
+      const foundUser = oldUsers.find(
+        user => user.email === email && user.password === password
+      )
 
-    const users = await getUsers()
+      if (foundUser) {
+        if (rememberMe) {
+          localStorage.setItem('rememberMe', JSON.stringify({ email, password }))
+        } else {
+          localStorage.removeItem('rememberMe')
+        }
 
-    const user = users.find(user => user.email === userLogin)
-
-    if (!user) {
-      notify('User does not exist!', 'red')
-      return
+        localStorage.setItem('Token', foundUser.username)
+        window.location.reload()
+      } else {
+        notify('Login or password is incorrect!', 'red')
+      }
+    } catch (error) {
+      console.error(error)
+      notify('An error occurred during login.', 'red')
     }
-
-    if (user.password !== userPassword) {
-      notify('Login or password entered incorrectly!', 'red')
-      return
-    }
-
-    if (!user.isBlocked) {
-      notify('User is blocked!', 'red')
-      return
-    }
-
-    if (rememberMe) {
-      localStorage.setItem('rememberMe', JSON.stringify(user))
-    }
-
-    localStorage.setItem('Token', user.userName)
-    window.location.reload()
-
-    setUserLogin('')
-    setUserPassword('')
   }
 
-  const isFormValid = userLogin && userPassword
+  useEffect(() => {
+    const savedUser = JSON.parse(localStorage.getItem('rememberMe'))
+    if (savedUser) {
+      setValue('email', savedUser.email)
+      setValue('password', savedUser.password)
+    }
+  }, [setValue])
 
   return (
-    <div className='min-h-[500px] p-[50px] h-[80vh] flex items-center justify-center select-none'>
+    <div className="min-h-[500px] p-[50px] h-[80vh] flex items-center justify-center select-none">
       <form
-        onSubmit={logining}
-        className='min-h-[500px] flex flex-col items-center justify-start h-[60vh] bg-sky-900/50 w-[40%] min-w-[400px] gap-5 p-5 rounded-xl'
+        onSubmit={handleSubmit(logining)}
+        className="min-h-[500px] flex flex-col items-center justify-start h-[60vh] bg-sky-900/50 w-[40%] min-w-[400px] gap-5 p-5 rounded-xl"
       >
-        <h1 className='text-5xl p-[40px] text-slate-50 font-bold'>LOGIN</h1>
+        <h1 className="text-5xl p-[40px] text-slate-50 font-bold">LOGIN</h1>
 
-        <span>
-          {userLoginDirty && userLoginError && (
-            <div className='text-center text-red-500 font-bold'>
-              {userLoginError}
-            </div>
-          )}
-          <input
-            type='text'
-            name='userLogin'
-            placeholder='Login'
-            autoComplete='email'
-            value={userLogin}
-            onBlur={blurHandler}
-            onChange={e => setUserLogin(e.target.value)}
-            className='border border-black rounded-xl w-64 py-1 px-3'
-          />
-        </span>
+        <Input
+          name="email"
+          register={register}
+          type="text"
+          placeholder="Email"
+          validation={emailValidation}
+          error={errors.email?.message}
+        />
 
-        <span>
-          {userPasswordDirty && userPasswordError && (
-            <div className='text-center text-red-500 font-bold'>
-              {userPasswordError}
-            </div>
-          )}
-          <div className='p-2 flex relative'>
-            <input
-              type={passwordType}
-              name='userPassword'
-              placeholder='Password'
-              autoComplete='password'
-              value={userPassword}
-              onBlur={blurHandler}
-              onChange={e => setUserPassword(e.target.value)}
-              className='border border-black rounded-xl w-64 py-1 px-3'
-            />
-            <span
-              onClick={showPassword}
-              className='cursor-pointer absolute flex justify-around items-center top-3 right-4'
-            >
-              {eye ? <FaEyeSlash size={25} /> : <FaEye size={25} />}
-            </span>
-          </div>
-        </span>
+        <Input
+          name="password"
+          register={register}
+          type="password"
+          placeholder="Password"
+          validation={passwordValidation}
+          error={errors.password?.message}
+        />
 
-        <br />
+        <a href="#" className="underline text-red-500">
+          Forgot password?
+        </a>
 
-        <button
-          type='submit'
-          disabled={!isFormValid}
-          className={`border border-black rounded-xl w-64 ${
-            isFormValid ? 'bg-green-300 hover:bg-sky-200' : 'bg-red-200'
-          }`}
-        >
-          Login
-        </button>
+        <Button isValid={isValid} children="Login" />
 
-        <label>
+        <label className="flex items-center gap-2">
           Remember me
           <input
-            type='checkbox'
+            type="checkbox"
+            checked={rememberMe}
             onChange={e => setRememberMe(e.target.checked)}
+            className="w-4 h-4"
           />
         </label>
 
         <p>
-          Don't have an account?{' '}
-          <NavLink to={REGISTER_PAGE} className='underline text-blue-800'>
+          Don't have an account?
+          <NavLink to={REGISTER_PAGE} className="underline text-blue-800 ml-1">
             Register
           </NavLink>
         </p>

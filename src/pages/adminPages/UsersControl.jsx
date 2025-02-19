@@ -81,7 +81,7 @@ const UsersList = () => {
                       if (user.userName === 'Admin') {
                         notify("You can't Blocked this user!", 'blue')
                       } else {
-                        user.isBlocked
+                        !user.isBlocked
                           ? notify(`User unblocked ${user.userName}!`, 'green')
                           : notify(`User blocked ${user.userName}!`, 'red')
                         blockUser(user.id)

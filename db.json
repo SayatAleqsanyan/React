@@ -4,7 +4,7 @@
       "id": "0",
       "userName": "Admin",
       "email": "Ml2bA@example.com",
-      "password": "ssss5555",
+      "password": "ssss5555#",
       "isBlocked": "false"
     },
     {
@@ -54,6 +54,27 @@
       "userName": "kfdsfggafdsa",
       "email": "sdfasdkasda@dsa.ri",
       "password": "11111111",
+      "isBlocked": "false"
+    },
+    {
+      "id": "5683",
+      "userName": "user12",
+      "email": "user@mail.ru",
+      "password": "User123@",
+      "isBlocked": "false"
+    },
+    {
+      "id": "82a8",
+      "userName": "user123",
+      "email": "user1@mail.ru",
+      "password": "user123@@",
+      "isBlocked": "false"
+    },
+    {
+      "id": "51b6",
+      "userName": "user1234",
+      "email": "user11@mail.ru",
+      "password": "user123@@",
       "isBlocked": "false"
     }
   ],
