@@ -38,9 +38,7 @@ const Login = () => {
     try {
       const oldUsers = await getUsers()
       const { email, password } = data
-      const foundUser = oldUsers.find(
-        user => user.email === email && user.password === password
-      )
+      const foundUser = oldUsers.find(user => user.email === email && user.password === password)
 
       if (foundUser) {
         if (rememberMe) {
@@ -49,7 +47,7 @@ const Login = () => {
           localStorage.removeItem('rememberMe')
         }
 
-        localStorage.setItem('Token', foundUser.username)
+        localStorage.setItem('Token', foundUser.userName)
         window.location.reload()
       } else {
         notify('Login or password is incorrect!', 'red')

@@ -33,7 +33,7 @@ const Countries = () => {
         ))}
       </ul>
 
-      <input type="text" placeholder="Add Country" value={name} onChange={e => setName(e.target.value)} />
+      <input type="text" className="dark:bg-gray-700" placeholder="Add Country" value={name} onChange={e => setName(e.target.value)} />
       <button
         onClick={() => {
           if (!id) {

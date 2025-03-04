@@ -116,17 +116,17 @@
     },
     {
       "name": "Product 6",
-      "price": 19.99,
+      "price": "19.99",
       "description": "Description of Product 6",
       "image": "https://picsum.photos/id/16/1000/700.jpg",
       "id": "6"
     },
     {
-      "id": "7",
       "name": "Product 7",
       "price": "29.9",
       "description": "Description of Product 7",
-      "image": "https://picsum.photos/id/17/1000/700.jpg"
+      "image": "https://picsum.photos/id/17/1000/700.jpg",
+      "id": "7"
     },
     {
       "id": "8",
@@ -206,11 +206,11 @@
       "image": "https://picsum.photos/id/28/1000/700.jpg"
     },
     {
-      "id": "781a",
       "name": "Product 19",
       "price": "29.99",
       "description": "Description of Product 19",
-      "image": "https://picsum.photos/id/29/1000/700.jpg"
+      "image": "https://picsum.photos/id/29/1000/700.jpg",
+      "id": "781a"
     },
     {
       "id": "a4c6",

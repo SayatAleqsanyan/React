@@ -33,7 +33,7 @@ const Country = () => {
       <h2 className="text-5xl font-bold p-10">Country</h2>
       <div className="flex space-x-4 min-w-[400px]">
         <input
-          className="w-[300px] border border-gray-300 dark:border-gray-700 p-2 rounded-lg"
+          className="w-[300px] border border-gray-300 dark:bg-gray-500 dark:border-gray-700 p-2 rounded-lg"
           type="text"
           value={country}
           onChange={e => setCountry(e.target.value)}
@@ -49,7 +49,7 @@ const Country = () => {
         </button>
       </div>
 
-      <ul className="divide-y divide-gray-200 dark:divide-gray-700 bg-gray-50 p-10 rounded-2xl">
+      <ul className="divide-y divide-gray-200 dark:bg-gray-700 dark:divide-gray-700 bg-gray-50 p-10 rounded-2xl">
         {countries.map(country => (
           <li key={country.id} className="flex justify-between space-x-4 min-w-[400px] py-2 ">
             {editingId === country.id ? (

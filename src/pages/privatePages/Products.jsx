@@ -97,7 +97,7 @@ const Products = () => {
           className='max-w-md mx-auto text-center space-y-4'
         >
           <input
-            className='w-full p-2 border rounded'
+            className='w-full p-2 border rounded dark:bg-gray-500'
             type='text'
             value={newProduct.name}
             onChange={e =>
@@ -110,7 +110,7 @@ const Products = () => {
             required
           />
           <input
-            className='w-full p-2 border rounded'
+            className='w-full p-2 border rounded dark:bg-gray-500'
             type='number'
             value={newProduct.price}
             onChange={e =>
@@ -123,7 +123,7 @@ const Products = () => {
             required
           />
           <input
-            className='w-full p-2 border rounded'
+            className='w-full p-2 border rounded dark:bg-gray-500'
             type='text'
             value={newProduct.description}
             onChange={e =>
@@ -136,7 +136,7 @@ const Products = () => {
             required
           />
           <input
-            className='w-full p-2 border rounded'
+            className='w-full p-2 border rounded dark:bg-gray-500'
             type='text'
             value={newProduct.image}
             onChange={e =>
@@ -172,7 +172,7 @@ const Products = () => {
         <select
           id='sort'
           onChange={e => setSort(e.target.value)}
-          className='w-[200px] p-2 border rounded mt-5'
+          className='w-[200px] p-2 border rounded mt-5 dark:bg-gray-500'
         >
           <option value='default'>Sort by</option>
           <option value='price'>Price</option>
@@ -183,7 +183,7 @@ const Products = () => {
           {filteredProducts.map(product => (
             <div
               key={product.id}
-              className='m-4 p-4 border rounded shadow-lg w-80 text-center bg-gray-100'
+              className='m-4 p-4 border rounded shadow-lg w-80 text-center bg-gray-100 dark:bg-gray-700'
             >
               {!(editProduct === product.id) && (
                 <div>
@@ -212,9 +212,9 @@ const Products = () => {
                 </div>
               )}
               {editProduct === product.id && (
-                <div className='mt-4 p-4 bg-white border rounded'>
+                <div className='mt-4 p-4 bg-white border rounded dark:bg-gray-800'>
                   <input
-                    className='w-full p-2 border rounded mb-2'
+                    className='w-full p-2 border rounded mb-2 dark:bg-gray-500'
                     type='text'
                     value={editValues.name}
                     onChange={e =>
@@ -226,7 +226,7 @@ const Products = () => {
                     required
                   />
                   <input
-                    className='w-full p-2 border rounded mb-2'
+                    className='w-full p-2 border rounded mb-2 dark:bg-gray-500'
                     type='number'
                     value={editValues.price}
                     onChange={e =>
@@ -238,7 +238,7 @@ const Products = () => {
                     required
                   />
                   <input
-                    className='w-full p-2 border rounded mb-2'
+                    className='w-full p-2 border rounded mb-2 dark:bg-gray-500'
                     type='text'
                     value={editValues.description}
                     onChange={e =>
@@ -250,7 +250,7 @@ const Products = () => {
                     required
                   />
                   <input
-                    className='w-full p-2 border rounded mb-2'
+                    className='w-full p-2 border rounded mb-2 dark:bg-gray-500'
                     type='text'
                     value={editValues.image}
                     onChange={e =>

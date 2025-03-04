@@ -6,7 +6,7 @@ const Pages = () => {
     const token = localStorage.getItem("Token");
 
     return (
-        <main id="main" className=" bg-neutral-400">
+        <main id="main" className=" ">
             {useRoutes(token ? privateRoutes : publicRoutes)}
         </main>
     )

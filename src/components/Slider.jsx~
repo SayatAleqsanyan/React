@@ -20,7 +20,7 @@ const Sdider = productsInfo => {
       >
         {productsInfo.productsInfo.map(el => (
           <SwiperSlide key={el.id}>
-            <div className="card w-[300px] h-[400px] dark:bg-gray-700 bg-gray-100 rounded-t-2xl" key={el.id}>
+            <div className="card w-[300px] h-[400px] dark:bg-gray-700 bg-gray-100 rounded-top-2xl" key={el.id}>
               <img src={el.image} alt="Product" />
               <div>
                 <div> {el.name} </div>

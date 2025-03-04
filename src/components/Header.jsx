@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header id="header" >
-      <div className="w-[100%] min-h-[100px] bg-gray-500 dark:bg-gray-800 text-center flex items-center justify-between px-10">
+      <div className="w-[100%] min-h-[100px] bg-gray-500 dark:bg-gray-950 text-center flex items-center justify-between px-10">
         <Menu />
 
         {token === 'Admin' && (
@@ -23,7 +23,7 @@ const Header = () => {
         )}
 
         {token && (
-          <h1 className="text-2xl font-bold text-black dark:text-white flex items-center">
+          <h1 className="text-2xl font-bold text-black dark:text-white flex items-center ">
             <span
               className="cursor-pointer hover:text-red-200"
               onClick={() => {

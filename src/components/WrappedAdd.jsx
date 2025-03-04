@@ -10,7 +10,7 @@ function WrappedAdd() {
   const { t, i18n } = useTranslation()
 
   return (
-    <div className='flex items-center justify-between text-2xl bg-gray-400 dark:bg-gray-700 text-black dark:text-white h-[50px] w-[100%]'>
+    <div className='flex items-center justify-between text-2xl bg-gray-400 dark:bg-gray-900 text-black dark:text-white h-[50px] w-[100%]'>
       <h2 className='px-5'>{t('welcome')}</h2>
 
       <div className='flex gap-3 '>{Object.keys(locales).map(lang => (

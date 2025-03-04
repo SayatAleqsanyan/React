@@ -68,14 +68,14 @@ const Change = () => {
         className="flex flex-col justify-center items-center gap-4 m-5"
       >
         <input
-          className="block w-[300px] p-2 text-lg dark:bg-gray-500"
+          className="block w-[300px] p-2 text-lg"
           type="text"
           value={name}
           onChange={e => setName(e.target.value)}
           placeholder="Enter name"
         />
         <input
-          className="dark:bg-gray-500 block w-[300px] p-2 text-lg"
+          className="block w-[300px] p-2 text-lg"
           type="text"
           value={course}
           onChange={e => setCourse(e.target.value)}

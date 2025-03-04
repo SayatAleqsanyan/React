@@ -16,7 +16,7 @@ root.render(
     <Provider store={store}>
       <CountryProvider>
         <ProductProvider>
-          <App />
+          <App />{' '}
         </ProductProvider>
       </CountryProvider>
       <ToastContainer />
